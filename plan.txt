@@ -1,0 +1,10 @@
+Saytda bolishi shart:
+Filter - Gulzoda
+Swagger- Munisa
+Guard - Gozal
+Auth - Munisa
+Test: e2e,unit - Gulzoda
+bot - umumiy guruh bilan yoziladi
+
+
+

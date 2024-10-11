@@ -5,6 +5,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './users/models/user.model';
 import { UsersModule } from './users/users.module';
+import { CategoryModule } from './categories/category.module';
+import { Category } from './categories/models';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -20,12 +22,13 @@ import { UsersModule } from './users/users.module';
     database: process.env.DB_NAME,
     autoLoadModels: true,
     sync: {alter: true},
-    models: [User],
+    models: [User,Category],
     synchronize: true
 
   }),
-    
-    UsersModule],
+    UsersModule,
+    CategoryModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

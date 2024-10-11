@@ -1,7 +1,12 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, Model, Table,HasMany } from "sequelize-typescript";
+import { CreateUserRequest } from "../interfaces";
+import { Recipe } from "src/recipes/models";
 
 @Table({tableName: 'users',timestamps: true})
 export class User extends Model{
+    static includes(newUser: CreateUserRequest) {
+      throw new Error('Method not implemented.');
+    }
     @Column({type: DataType.INTEGER,primaryKey: true,autoIncrement: true})
     id: number
 
@@ -19,5 +24,8 @@ export class User extends Model{
 
     @Column({type: DataType.STRING,allowNull: false,unique: true})
     password: string
+
+    // @HasMany(()=> Recipe)
+    // recipes: Recipe[]
 
 }
