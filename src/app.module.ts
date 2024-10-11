@@ -7,6 +7,7 @@ import { User } from './users/models/user.model';
 import { UsersModule } from './users/users.module';
 import { CategoryModule } from './categories/category.module';
 import { Category } from './categories/models';
+import { ProductModule } from './product';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -27,7 +28,8 @@ import { Category } from './categories/models';
 
   }),
     UsersModule,
-    CategoryModule
+    CategoryModule,
+    ProductModule
   ],
   controllers: [AppController],
   providers: [AppService],
