@@ -13,11 +13,10 @@ export class CategoryService {
 
   async createCategory(payload: CreateCategoryRequest): Promise<Category> {
     try {
-      console.log(payload.name, payload.image)
+      // console.log(payload.name, payload.image)
       return await this.categoryModel.create({
         name: payload.name,
         image: payload.image,
-        description: payload.description,
       });
 
     } catch (error) {
@@ -59,10 +58,12 @@ export class CategoryService {
     if(fs.existsSync(filePath)){
       fs.unlinkSync(filePath)
     }
-    return await category.update({
+    return await this.categoryModel.update({
       name: payload.name || category.name,
       image: payload.image || category.image
 
+    },{
+      where:{id}
     })
     }
 
@@ -77,7 +78,7 @@ export class CategoryService {
         if(category.image){
           fs.unlinkSync(deletedPath)
         }
-        await category.destroy()
+        await this.categoryModel.destroy()
         return {
           message: 'Category deleted successfully',
           statusCode: 200,

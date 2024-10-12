@@ -12,15 +12,15 @@ export class CategoryController {
   constructor(private readonly service: CategoryService) { }
 
   @Post('add')
-  @UseInterceptors(FileInterceptor('image',fileUpload() ))
+  @UseInterceptors(FileInterceptor('video',fileUpload() ))
   async createCategory(
     @Body() payload: CreateCategoryDto,
-    @UploadedFile() image: Express.Multer.File
+    @UploadedFile() video: Express.Multer.File
   ): Promise<Category> {
-    console.log(image)
+    console.log(video)
     const newCategory = {
       ...payload,
-      image: image ? image.filename : null,
+      image: video ? video.filename : null,
     };
     return await this.service.createCategory(newCategory);
   }
