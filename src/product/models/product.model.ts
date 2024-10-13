@@ -1,4 +1,6 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Meal } from 'src/meal/model';
+import { Recipe } from 'src/recipes/models';
 
 @Table
 export class Product extends Model<Product> {
@@ -20,4 +22,8 @@ export class Product extends Model<Product> {
     allowNull: false,
   })
   image: string;
+
+  @HasMany(() => Recipe)
+  recipes: Recipe[];
+  
 }

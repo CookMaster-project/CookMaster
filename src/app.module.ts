@@ -7,7 +7,11 @@ import { User } from './users/models/user.model';
 import { UsersModule } from './users/users.module';
 import { CategoryModule } from './categories/category.module';
 import { Category } from './categories/models';
-import { ProductModule } from './product';
+import { Product, ProductModule } from './product';
+import { MealModule } from './meal/meal.module';
+import { Meal } from './meal/model';
+import { Recipe } from './recipes/models';
+import { RecipeModule } from './recipes/recipe.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -23,13 +27,15 @@ import { ProductModule } from './product';
     database: process.env.DB_NAME,
     autoLoadModels: true,
     sync: {alter: true},
-    models: [User,Category],
+    models: [User,Category,Product,Meal,Recipe],
     synchronize: true
 
   }),
     UsersModule,
     CategoryModule,
-    ProductModule
+    ProductModule,
+    MealModule,
+    RecipeModule
   ],
   controllers: [AppController],
   providers: [AppService],

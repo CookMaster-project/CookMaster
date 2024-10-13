@@ -1,4 +1,7 @@
 import { Model, Table,Column,DataType,ForeignKey,BelongsTo} from "sequelize-typescript";
+import { Meal } from "src/meal/model";
+import { Product } from "src/product";
+import { User } from "src/users/models/user.model";
 
 @Table({})
 export class Recipe extends Model{
@@ -8,21 +11,19 @@ export class Recipe extends Model{
     @Column({type: DataType.STRING,allowNull: false})
     quentity: string
 
-    // @ForeignKey(()=> Category)
-    // @Column({type: DataType.INTEGER,allowNull: false,onDelete: "CASCADE",onUpdate: "NO ACTION"})
-    // category_id: number
+    @ForeignKey(()=> Meal)
+    @Column({type: DataType.INTEGER,allowNull: false,onDelete: "CASCADE",onUpdate: "NO ACTION"})
+    meal_id: number
 
-    // @BelongsTo(()=> Category)
-    // category: Category
+    @BelongsTo(()=> Meal)
+    meal: Meal
 
-    // @ForeignKey(()=> Category)
-    // @Column({type: DataType.INTEGER,allowNull: false,onDelete: "CASCADE",onUpdate: "NO ACTION"})
-    // owner_id: number
+    @ForeignKey(()=> Product)
+    @Column({type: DataType.INTEGER,allowNull: false,onDelete: "CASCADE",onUpdate: "NO ACTION"})
+    product_id: number
 
-    // @BelongsTo(()=> Category)
-    // owner: Category
-
-
+    @BelongsTo(()=> Product)
+    product: Product
 
 
 }

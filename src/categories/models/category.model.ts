@@ -1,5 +1,6 @@
 
 import { Model,Table,Column,DataType,HasMany } from "sequelize-typescript";
+import { Meal } from "src/meal/model";
 import { Recipe } from "src/recipes/models";
 
 
@@ -14,9 +15,9 @@ export class Category extends Model{
     @Column({type: DataType.STRING,allowNull: false,unique: true})
     name: string
 
-   
+    @HasMany(() => Meal)
+    meals: Meal[];
 
+    @HasMany(() => Meal, { onDelete: 'CASCADE', onUpdate: 'NO ACTION' })
+    meal: Meal[];
 }
-
- // @HasMany(()=> Recipe)
-    // recipes: Recipe[]
